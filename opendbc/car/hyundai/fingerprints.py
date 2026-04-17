@@ -846,6 +846,7 @@ FW_VERSIONS = {
   CAR.KIA_OPTIMA_G4_FL: {
     (Ecu.fwdRadar, 0x7d0, None): [
       b'\xf1\x00JF__ SCC F-CUP      1.00 1.00 96400-D4110         ',
+      b'\xf1\x00\xff\x00',
     ],
     (Ecu.abs, 0x7d1, None): [
       b"\xf1\x00JF ESC \t 11 \x18\x03' 58920-D5260",
@@ -855,10 +856,10 @@ FW_VERSIONS = {
     (Ecu.fwdCamera, 0x7c4, None): [
       b'\xf1\x00JFA LKAS AT USA LHD 1.00 1.00 95895-D5001 h32',
       b'\xf1\x00JFA LKAS AT USA LHD 1.00 1.00 95895-D5100 h32',
-      b'\xf1\x00JFA LKAS AT USA LHD 1.00 1.02 95895-D5000 h31',  # NEW - 2019 Kia Optima LX (VIN 5XXGT4L36KG357204)
+      b'\xf1\x00JFA LKAS AT USA LHD 1.00 1.02 95895-D5000 h31',  # NEW - 2019 Kia Optima LX (VIN )
     ],
     (Ecu.transmission, 0x7e1, None): [
-      b'\xf1\x006T6H0_C2\x00\x006T6B7051\x00\x00TJFSG24SH1\x18\x96\xe4\x87',  # NEW - 2019 Kia Optima LX (VIN 5XXGT4L36KG357204)
+      b'\xf1\x006T6H0_C2\x00\x006T6B7051\x00\x00TJFSG24SH1\x18\x96\xe4\x87',  # NEW - 2019 Kia Optima LX (VIN )
     ],
   },
   CAR.KIA_OPTIMA_H: {

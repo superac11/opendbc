@@ -846,7 +846,9 @@ FW_VERSIONS = {
   CAR.KIA_OPTIMA_G4_FL: {
     (Ecu.fwdRadar, 0x7d0, None): [
       b'\xf1\x00JF__ SCC F-CUP      1.00 1.00 96400-D4110         ',
-      b'\xf1\x00\xff\x00',
+    ],
+    (Ecu.cornerRadar, 0x7b7, None): [
+    b'\xf1\x00\xff\x00', #Addded for corner radar without SCC
     ],
     (Ecu.abs, 0x7d1, None): [
       b"\xf1\x00JF ESC \t 11 \x18\x03' 58920-D5260",

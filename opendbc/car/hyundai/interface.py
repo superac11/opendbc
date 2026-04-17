@@ -145,7 +145,7 @@ class CarInterface(CarInterfaceBase):
 
     # Car specific configuration overrides
 
-    if candidate == CAR.KIA_OPTIMA_G4_FL:
+    if candidate == (CAR.KIA_OPTIMA_G4_FL, CAR.KIA_OPTIMA_G4_FL_NO_SCC) :
       ret.steerActuatorDelay = 0.2
 
     # Dashcam cars are missing a test route, or otherwise need validation

@@ -473,6 +473,16 @@ class CAR(Platforms):
     CarSpecs(mass=3558 * CV.LB_TO_KG, wheelbase=2.8, steerRatio=13.75, tireStiffnessFactor=0.5),
     flags=HyundaiFlags.UNSUPPORTED_LONGITUDINAL | HyundaiFlags.TCU_GEARS,
   )
+  KIA_OPTIMA_G4_FL_NO_SCC = HyundaiPlatformConfig(
+  [HyundaiCarDocs("Kia Optima LX 2019 (No SCC)", car_parts=CarParts.common([CarHarness.hyundai_g]))],
+  CarSpecs(
+    mass=3558 * CV.LB_TO_KG,
+    wheelbase=2.8,
+    steerRatio=13.75,
+    tireStiffnessFactor=0.5,
+  ),
+  flags=HyundaiFlags.LEGACY | HyundaiFlags.TCU_GEARS | HyundaiFlags.UNSUPPORTED_LONGITUDINAL,
+  )
   # TODO: may support adjacent years. may have a non-zero minimum steering speed
   KIA_OPTIMA_H = HyundaiPlatformConfig(
     [HyundaiCarDocs("Kia Optima Hybrid 2017", "Advanced Smart Cruise Control", car_parts=CarParts.common([CarHarness.hyundai_c]))],

@@ -36,7 +36,7 @@ class CarControllerParams:
     # If the max stock LKAS request is <384, add your car to this list.
     elif CP.carFingerprint in (CAR.GENESIS_G80, CAR.HYUNDAI_ELANTRA, CAR.HYUNDAI_ELANTRA_GT_I30, CAR.HYUNDAI_IONIQ,
                                CAR.HYUNDAI_IONIQ_EV_LTD, CAR.HYUNDAI_SANTA_FE_PHEV_2022, CAR.HYUNDAI_SONATA_LF, CAR.KIA_FORTE, CAR.KIA_NIRO_PHEV,
-                               CAR.KIA_OPTIMA_H, CAR.KIA_OPTIMA_H_G4_FL, CAR.KIA_SORENTO):
+                               CAR.KIA_OPTIMA_H, CAR.KIA_OPTIMA_H_G4_FL, CAR.KIA_OPTIMA_G4_FL_NON_SCC, CAR.KIA_SORENTO):
       self.STEER_MAX = 255
 
     # these cars have significantly more torque than most HKG; limit to 70% of max
@@ -473,15 +473,15 @@ class CAR(Platforms):
     CarSpecs(mass=3558 * CV.LB_TO_KG, wheelbase=2.8, steerRatio=13.75, tireStiffnessFactor=0.5),
     flags=HyundaiFlags.UNSUPPORTED_LONGITUDINAL | HyundaiFlags.TCU_GEARS,
   )
-  KIA_OPTIMA_G4_FL_NO_SCC = HyundaiPlatformConfig(
-  [HyundaiCarDocs("Kia Optima LX 2019 (No SCC)", car_parts=CarParts.common([CarHarness.hyundai_g]))],
-  CarSpecs(
-    mass=3558 * CV.LB_TO_KG,
-    wheelbase=2.8,
-    steerRatio=13.75,
-    tireStiffnessFactor=0.5,
-  ),
-  flags=HyundaiFlags.LEGACY | HyundaiFlags.TCU_GEARS | HyundaiFlags.UNSUPPORTED_LONGITUDINAL,
+  KIA_OPTIMA_G4_FL_NON_SCC = HyundaiPlatformConfig(
+    # 2019 Kia Optima LX and other base trims without Smart Cruise Control (SCC).
+    # These cars have no fwdRadar ECU at 0x7d0, but do respond on cornerRadar (0x7b7).
+    # Identified by: camera 95895-D5000 h31, transmission TJFSG24SH1, ABS 58920-D5260.
+    # Uses LKAS camera for lane keeping only; no radar-based longitudinal control.
+    [HyundaiCarDocs("Kia Optima 2019-20", "No Smart Cruise Control (Non-SCC)",
+                    car_parts=CarParts.common([CarHarness.hyundai_g]))],
+    CarSpecs(mass=3558 * CV.LB_TO_KG, wheelbase=2.8, steerRatio=13.75, tireStiffnessFactor=0.5),
+    flags=HyundaiFlags.UNSUPPORTED_LONGITUDINAL | HyundaiFlags.TCU_GEARS,
   )
   # TODO: may support adjacent years. may have a non-zero minimum steering speed
   KIA_OPTIMA_H = HyundaiPlatformConfig(
@@ -781,7 +781,7 @@ FW_QUERY_CONFIG = FwQueryConfig(
   non_essential_ecus={
     Ecu.abs: [CAR.HYUNDAI_PALISADE, CAR.HYUNDAI_SONATA, CAR.HYUNDAI_SANTA_FE_2022, CAR.KIA_K5_2021, CAR.HYUNDAI_ELANTRA_2021,
               CAR.HYUNDAI_SANTA_FE, CAR.HYUNDAI_KONA_EV_2022, CAR.HYUNDAI_KONA_EV, CAR.HYUNDAI_CUSTIN_1ST_GEN, CAR.KIA_SORENTO,
-              CAR.KIA_CEED, CAR.KIA_OPTIMA_G4_FL_NO_SCC, CAR.KIA_SELTOS],
+              CAR.KIA_CEED, CAR.KIA_SELTOS, CAR.KIA_OPTIMA_G4_FL_NON_SCC],
   },
   extra_ecus=[
     (Ecu.adas, 0x730, None),              # ADAS Driving ECU on platforms with LKA steering

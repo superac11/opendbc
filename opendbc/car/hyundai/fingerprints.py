@@ -859,9 +859,6 @@ FW_VERSIONS = {
   },
   # Non-SCC 2019 Kia Optima LX platform — no fwdRadar (0x7d0), uses LKAS camera only.
   CAR.KIA_OPTIMA_G4_FL_NON_SCC: {
-    (Ecu.cornerRadar, 0x7b7, None): [
-      b'\xf1\x00\xff\x00',
-    ],
     (Ecu.abs, 0x7d1, None): [
       b"\xf1\x00JF ESC \t 11 \x18\x03' 58920-D5260",
     ],
